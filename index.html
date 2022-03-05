@@ -8,10 +8,19 @@
 </head>
 <body>
     <div id="container-div">
-        <div id="slides">
-            <img src="images/image1.JPG" alt="me with big hair">
-            <img src="images/image2.JPG" alt="me with ballet top">
-            <img src="images/image3.JPG" alt="me in purple dress">
+        <button class="arrow" id="back-arrow"><</button>
+        <div id="slides-container">
+            <div id="slides">
+                <img src="images/image1.JPG" alt="me with big hair" id="1" data-position="0">
+                <img src="images/image2.JPG" alt="me with ballet top" id="2" data-position="240">
+                <img src="images/image3.JPG" alt="me in purple dress" id="3" data-position="480">
+            </div>
+        </div>
+        <button class="arrow" id="forward-arrow">></button>
+        <div id="circles-container">
+            <button class="circle" data-correspondingImg="1"></button>
+            <button class="circle" data-correspondingImg="2"></button>
+            <button class="circle" data-correspondingImg="3"></button>        
         </div>
     </div>
     <script src="index.js">    
