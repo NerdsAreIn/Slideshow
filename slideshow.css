@@ -26,7 +26,7 @@ body {
     overflow: hidden;   
     display: inline-block;
 }
-#slides {
+#slides-reel {
     height: 320px;
     width: 720px;
     z-index: 3;
