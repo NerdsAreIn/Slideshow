@@ -9,10 +9,29 @@ let declarationBlock = window.getComputedStyle(slidesReel);
 let leftValue = declarationBlock.getPropertyValue("left");
 let leftNumber = parseInt(leftValue);
 
+function selectCircle() {
+    leftValue = declarationBlock.getPropertyValue("left");
+    if (leftValue === "0px") {
+        circles[0].classList.add("selected");
+        circles[1].classList.remove("selected");
+        circles[2].classList.remove("selected");
+    }
+    else if (leftValue === "-240px") {
+        circles[1].classList.add("selected");
+        circles[0].classList.remove("selected");
+        circles[2].classList.remove("selected");
+    }
+    else if (leftValue === "-480px") {
+        circles[2].classList.add("selected");
+        circles[1].classList.remove("selected");
+        circles[0].classList.remove("selected");
+    }
+}
+
 playButton.addEventListener("click", () => {
     slidesReel.classList.add("animated");
     slidesReel.classList.remove("paused");
-    console.log("animated");
+    setInterval(selectCircle, 10);    
 });
 
 pauseButton.addEventListener("click", () => {
@@ -25,6 +44,7 @@ backButton.addEventListener("click", () => {
         leftNumber += 240;  
     }
     slidesReel.style.left = leftNumber + "px";
+    selectCircle();
 });
 
 forwardButton.addEventListener("click", () => {   
@@ -34,7 +54,8 @@ forwardButton.addEventListener("click", () => {
     if (finalNumber < leftNumber) {  
         leftNumber -= 240;        
     }
-    slidesReel.style.left = leftNumber + "px";    
+    slidesReel.style.left = leftNumber + "px"; 
+    selectCircle();   
 });
 
 circles.forEach(circle => {
@@ -45,17 +66,13 @@ circles.forEach(circle => {
             if (circle !== e.target) {
                 circle.classList.remove("selected");
             }
-        });
-        console.log(circleNo);
+        });        
         let position;
         slides.forEach(slide => {
             if (slide.id === circleNo) {
-                position = slide.dataset.position;
-                console.log({position});            
+                position = slide.dataset.position;                          
             }
         });
         slidesReel.style.left = Number("-" + position) + "px"; 
     });
 });
-
-
