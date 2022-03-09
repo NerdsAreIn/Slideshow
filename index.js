@@ -16,12 +16,12 @@ function selectCircle() {
         circles[1].classList.remove("selected");
         circles[2].classList.remove("selected");
     }
-    else if (leftValue === "-240px") {
+    else if (leftValue === "-340px") {
         circles[1].classList.add("selected");
         circles[0].classList.remove("selected");
         circles[2].classList.remove("selected");
     }
-    else if (leftValue === "-480px") {
+    else if (leftValue === "-680px") {
         circles[2].classList.add("selected");
         circles[1].classList.remove("selected");
         circles[0].classList.remove("selected");
@@ -41,7 +41,7 @@ pauseButton.addEventListener("click", () => {
 
 backButton.addEventListener("click", () => {
     if (leftNumber < 0) {  
-        leftNumber += 240;  
+        leftNumber += 340;  
     }
     slidesReel.style.left = leftNumber + "px";
     selectCircle();
@@ -50,9 +50,9 @@ backButton.addEventListener("click", () => {
 forwardButton.addEventListener("click", () => {   
     let widthValue = declarationBlock.getPropertyValue("width");
     let widthNumber = Number("-" + parseInt(widthValue));
-    let finalNumber = widthNumber + 240;
+    let finalNumber = widthNumber + 340;
     if (finalNumber < leftNumber) {  
-        leftNumber -= 240;        
+        leftNumber -= 340;        
     }
     slidesReel.style.left = leftNumber + "px"; 
     selectCircle();   
