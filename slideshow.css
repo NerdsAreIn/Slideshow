@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: content-box ;
+    --imageWidth: 340px;
 }
 body { 
     position: relative;  
@@ -22,12 +23,12 @@ body {
     overflow: auto;
 }
 #slides-container {
-    border: 7px solid rgba(255, 0, 255, 0.6);
+    border: 7px solid rgba(255, 0, 255, 0.4);
     outline: solid 2px black;
     outline-offset: 2px;
     border-radius: 3px;
     height: 490px;
-    width: 340px;
+    width: var(--imageWidth);
     z-index: 2;    
     position: relative;
     margin: auto;
@@ -36,11 +37,11 @@ body {
 }
 #slides-reel {
     height: 490px;
-    width: 1020px;
+    width: calc(var(--imageWidth) * 3);
     z-index: 3;
     position: absolute; 
     left: 0px;  
-    border: 1px solid red;   
+    border:;   
 }
 #slides-reel.animated {
     animation-name: move-slides;
@@ -58,10 +59,10 @@ body {
         left: 0px;
     }    
     50% {
-        left: -240px;
+        left: -var(--imageWidth) * 1;
     }    
     100% {
-        left: -480px;
+        left: -var(--imageWidth) * 2;
     }
 }
 img {
@@ -75,13 +76,13 @@ img {
     all: unset;
     position: relative;
     z-index: 4;
-    height: 30px;
-    width: 30px;
-    font-size: 30px;
+    height: 40px;
+    width: 40px;
+    font-size: 35px;
     font-weight: bold;
     text-align: center;
-    padding: 5px;
-    background-color: rgba(211, 255, 251, 0.8);
+    padding: 5px;    
+    background-color: rgba(211, 255, 251, 1);
     border-radius: 3px;
     border: 1px solid black;
     color: fuchsia;
@@ -100,8 +101,9 @@ img {
 #circles-container {
     margin: auto;
     position: relative;
-    border: 1px solid royalblue;
+    border: ;
     text-align: center;
+    bottom: 80px;
 }
 .circle {
     margin: 5px 10px;

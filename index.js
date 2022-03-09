@@ -5,23 +5,30 @@ const circles = Array.from(document.getElementsByClassName("circle"));
 const pauseButton = document.getElementById("pause");
 const playButton = document.getElementById("start");
 const slides = [...document.getElementsByTagName("img")];
-let declarationBlock = window.getComputedStyle(slidesReel);
-let leftValue = declarationBlock.getPropertyValue("left");
+const image1 = slides[0];
+console.log({image1});
+let reelDeclarationBlock = window.getComputedStyle(slidesReel);
+let leftValue = reelDeclarationBlock.getPropertyValue("left");
 let leftNumber = parseInt(leftValue);
+let imageDeclarationBlock = window.getComputedStyle(image1);
+let imageWidth = parseInt(imageDeclarationBlock.getPropertyValue("width")) + 40;
+console.log({imageWidth});
+
+// rewrite this with cirle indices matching imageWidth multipliers:
 
 function selectCircle() {
-    leftValue = declarationBlock.getPropertyValue("left");
-    if (leftValue === "0px") {
+    leftValue = reelDeclarationBlock.getPropertyValue("left");
+    if (leftValue === imageWidth * 0 + "px") {
         circles[0].classList.add("selected");
         circles[1].classList.remove("selected");
         circles[2].classList.remove("selected");
     }
-    else if (leftValue === "-340px") {
+    else if (leftValue === -(imageWidth * 1) + "px") {
         circles[1].classList.add("selected");
         circles[0].classList.remove("selected");
         circles[2].classList.remove("selected");
     }
-    else if (leftValue === "-680px") {
+    else if (leftValue === -(imageWidth * 2) + "px") {
         circles[2].classList.add("selected");
         circles[1].classList.remove("selected");
         circles[0].classList.remove("selected");
@@ -41,18 +48,18 @@ pauseButton.addEventListener("click", () => {
 
 backButton.addEventListener("click", () => {
     if (leftNumber < 0) {  
-        leftNumber += 340;  
+        leftNumber += imageWidth;  
     }
     slidesReel.style.left = leftNumber + "px";
     selectCircle();
 });
 
 forwardButton.addEventListener("click", () => {   
-    let widthValue = declarationBlock.getPropertyValue("width");
+    let widthValue = reelDeclarationBlock.getPropertyValue("width");
     let widthNumber = Number("-" + parseInt(widthValue));
-    let finalNumber = widthNumber + 340;
+    let finalNumber = widthNumber + imageWidth;
     if (finalNumber < leftNumber) {  
-        leftNumber -= 340;        
+        leftNumber -= imageWidth;        
     }
     slidesReel.style.left = leftNumber + "px"; 
     selectCircle();   
