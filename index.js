@@ -6,33 +6,26 @@ const pauseButton = document.getElementById("pause");
 const playButton = document.getElementById("start");
 const slides = [...document.getElementsByTagName("img")];
 const image1 = slides[0];
-console.log({image1});
 let reelDeclarationBlock = window.getComputedStyle(slidesReel);
 let leftValue = reelDeclarationBlock.getPropertyValue("left");
 let leftNumber = parseInt(leftValue);
 let imageDeclarationBlock = window.getComputedStyle(image1);
 let imageWidth = parseInt(imageDeclarationBlock.getPropertyValue("width")) + 40;
-console.log({imageWidth});
+
+for (let i = 0; i < slides.length; i++) {
+    slides[i].setAttribute("data-position", -(imageWidth * i) + "px");
+}
 
 // rewrite this with cirle indices matching imageWidth multipliers:
 
 function selectCircle() {
     leftValue = reelDeclarationBlock.getPropertyValue("left");
-    if (leftValue === imageWidth * 0 + "px") {
-        circles[0].classList.add("selected");
-        circles[1].classList.remove("selected");
-        circles[2].classList.remove("selected");
-    }
-    else if (leftValue === -(imageWidth * 1) + "px") {
-        circles[1].classList.add("selected");
-        circles[0].classList.remove("selected");
-        circles[2].classList.remove("selected");
-    }
-    else if (leftValue === -(imageWidth * 2) + "px") {
-        circles[2].classList.add("selected");
-        circles[1].classList.remove("selected");
-        circles[0].classList.remove("selected");
-    }
+    for (let i = 0; i < circles.length; i++) {
+        if (leftValue === -(imageWidth * i) + "px") {
+            circles[i].classList.add("selected");
+        }
+        else circles[i].classList.remove("selected");
+    }          
 }
 
 playButton.addEventListener("click", () => {
@@ -47,7 +40,7 @@ pauseButton.addEventListener("click", () => {
 });
 
 backButton.addEventListener("click", () => {
-    if (leftNumber < 0) {  
+    if (leftNumber < -0) {  
         leftNumber += imageWidth;  
     }
     slidesReel.style.left = leftNumber + "px";
@@ -80,6 +73,6 @@ circles.forEach(circle => {
                 position = slide.dataset.position;                          
             }
         });
-        slidesReel.style.left = Number("-" + position) + "px"; 
+        slidesReel.style.left = position; 
     });
 });

@@ -1,7 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: content-box;
+    box-sizing: border-box;
     --imageWidth: 290px;
 }
 body { 
@@ -12,13 +12,13 @@ body {
 #container-div {
     position: fixed;
     top: 5px;
-    left: calc((100vw - 500px) / 2 );
-    width: 500px;
-    height: 630px;
-    padding: 10px;
+    left: calc((100vw - 432px) / 2 );
+    width: 432px;
+    height: 465px;
     z-index: 1;
     text-align: center;
-    border: 2px solid seagreen;  
+    border: 2px solid transparent;
+    box-sizing: content-box;
 }
 #slides-container {
     border: 7px solid rgba(255, 0, 255, 0.4);
@@ -31,14 +31,15 @@ body {
     position: absolute;
     overflow: hidden;      
     top: 0px;
-    margin: 5px 80px;    
+    left: 65px;  
+    box-sizing: content-box;
 }
 #slides-reel {
     height: 415px;
     width: calc(var(--imageWidth) * 3);
     z-index: 3;
     position: absolute;
-    left: 0px;    
+    left: -0px;    
 }
 #slides-reel.animated {
     animation-name: move-slides;
@@ -86,26 +87,26 @@ img {
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     outline: 1px solid fuchsia;    
     cursor: pointer;
+    top: 50%;
 }
 #forward-arrow {
-    right: 20px;
-    bottom: 270px;
+    right: 5px;    
 }
 #back-arrow {
-    left: 20px;
-    top: 275px;
+    left: 5px;    
 }
 #circles-container {   
     position: absolute;   
     text-align: center;
-    bottom: 100px;
+    bottom: 5px;
     border: 1px solid transparent;
-    left: 190px;
+    left: calc((100% - 120px) / 2);
+    width: 120px;
 }
 .circle {
     margin: 0 10px;
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     border-radius: 50%;
     background-color: cornflowerblue;
     border: 1px solid black;
@@ -113,12 +114,8 @@ img {
 .circle.selected {
     background-color: rgb(4, 199, 199);
 }
-h1 {
-    font-size: 18px;
-    margin: 20px 0 15px;
-}
-.controls {
-    margin: 10px;
-    position: absolute;
-    bottom: 50px;
+#controls {
+    display: block;
+    z-index: 1;
+    margin: auto;
 }
