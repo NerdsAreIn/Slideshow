@@ -1,47 +1,44 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: content-box ;
-    --imageWidth: 340px;
+    box-sizing: content-box;
+    --imageWidth: 290px;
 }
 body { 
-    position: relative;  
     width: 100vw;      
     overflow: auto;
     background-color: rgb(245, 234, 245);
 }
 #container-div {
     position: fixed;
-    border: 3px solid transparent;
     top: 5px;
-    left: 33%;
+    left: calc((100vw - 500px) / 2 );
     width: 500px;
-    height: max-content;
+    height: 630px;
     padding: 10px;
     z-index: 1;
     text-align: center;
-    overflow: auto;
+    border: 2px solid seagreen;  
 }
 #slides-container {
     border: 7px solid rgba(255, 0, 255, 0.4);
     outline: solid 2px black;
     outline-offset: 2px;
     border-radius: 3px;
-    height: 490px;
+    height: 415px;
     width: var(--imageWidth);
     z-index: 2;    
-    position: relative;
-    margin: auto;
+    position: absolute;
     overflow: hidden;      
-    top: -40px;
+    top: 0px;
+    margin: 5px 80px;    
 }
 #slides-reel {
-    height: 490px;
+    height: 415px;
     width: calc(var(--imageWidth) * 3);
     z-index: 3;
-    position: absolute; 
-    left: 0px;  
-    border:;   
+    position: absolute;
+    left: 0px;    
 }
 #slides-reel.animated {
     animation-name: move-slides;
@@ -59,26 +56,26 @@ body {
         left: 0px;
     }    
     50% {
-        left: -var(--imageWidth) * 1;
+        left: calc(var(--imageWidth) * -1);
     }    
     100% {
-        left: -var(--imageWidth) * 2;
+        left: calc(var(--imageWidth) * -2);
     }
 }
 img {
     float: left;
-    width: 300px;
+    width: 250px;
     margin: 20px;    
     aspect-ratio: 1/1.5;
     z-index: 4;
 }
 .arrow {
     all: unset;
-    position: relative;
+    position: absolute;
     z-index: 4;
-    height: 40px;
-    width: 40px;
-    font-size: 35px;
+    height: 30px;
+    width: 30px;
+    font-size: 25px;
     font-weight: bold;
     text-align: center;
     padding: 5px;    
@@ -91,26 +88,27 @@ img {
     cursor: pointer;
 }
 #forward-arrow {
-    left: 220px;
+    right: 20px;
     bottom: 270px;
 }
 #back-arrow {
-    right: 220px;
+    left: 20px;
     top: 275px;
 }
-#circles-container {
-    margin: auto;
-    position: relative;
-    border: ;
+#circles-container {   
+    position: absolute;   
     text-align: center;
-    bottom: 80px;
+    bottom: 100px;
+    border: 1px solid transparent;
+    left: 190px;
 }
 .circle {
-    margin: 5px 10px;
+    margin: 0 10px;
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background-color: teal;
+    background-color: cornflowerblue;
+    border: 1px solid black;
 }
 .circle.selected {
     background-color: rgb(4, 199, 199);
@@ -121,4 +119,6 @@ h1 {
 }
 .controls {
     margin: 10px;
+    position: absolute;
+    bottom: 50px;
 }
