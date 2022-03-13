@@ -2,7 +2,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    --imageWidth: 290px;
+    --imageTotalWidth: 290px;
+    --imageWidth: 250px;
+    --imageHeight: ;
+    --imageTotalHeight: calc(var(--imageWidth) * 1.5 + 40);    
 }
 body { 
     width: 100vw;      
@@ -12,9 +15,11 @@ body {
 #container-div {
     position: fixed;
     top: 5px;
-    left: calc((100vw - 432px) / 2 );
-    width: 432px;
-    height: 465px;
+    left: calc((100vw - var(--containerWidth)) / 2 );
+    --containerWidth: 432px;
+    width: var(--containerWidth);
+    --containerHeight: 465px;
+    height: var(--containerHeight);
     z-index: 1;
     text-align: center;
     border: 2px solid transparent;
@@ -25,8 +30,8 @@ body {
     outline: solid 2px black;
     outline-offset: 2px;
     border-radius: 3px;
-    height: 415px;
-    width: var(--imageWidth);
+    height: var(--imageTotalHeight);
+    width: var(--imageTotalWidth);
     z-index: 2;    
     position: absolute;
     overflow: hidden;      
@@ -36,7 +41,7 @@ body {
 }
 #slides-reel {
     height: 415px;
-    width: calc(var(--imageWidth) * 3);
+    width: calc(var(--imageTotalWidth) * 3);
     z-index: 3;
     position: absolute;
     left: -0px;    
@@ -57,17 +62,16 @@ body {
         left: 0px;
     }    
     50% {
-        left: calc(var(--imageWidth) * -1);
+        left: calc(var(--imageTotalWidth) * -1);
     }    
     100% {
-        left: calc(var(--imageWidth) * -2);
+        left: calc(var(--imageTotalWidth) * -2);
     }
 }
 img {
     float: left;
-    width: 250px;
+    width: var(--imageWidth);
     margin: 20px;    
-    aspect-ratio: 1/1.5;
     z-index: 4;
 }
 .arrow {
@@ -86,8 +90,27 @@ img {
     color: fuchsia;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     outline: 1px solid fuchsia;    
-    cursor: pointer;
-    top: 50%;
+    top: 50%; 
+}
+.arrow:hover {
+    animation: pulse 700ms linear 100ms 1 normal backwards;
+}
+.arrow:active, .arrow:focus {
+    box-shadow: 3px 3px 10px 8px rgba(255, 255, 255, 0.6);
+}
+@keyframes pulse {
+    15% {
+        transform: rotate(5deg);
+    }
+    30% {
+        transform: rotate(-5deg);
+    }
+    45% {
+        transform: rotate(5deg);
+    }
+    70% {        
+        transform: rotate(-5deg);
+    }   
 }
 #forward-arrow {
     right: 5px;    
@@ -95,7 +118,7 @@ img {
 #back-arrow {
     left: 5px;    
 }
-#circles-container {   
+#circles-container {    
     position: absolute;   
     text-align: center;
     bottom: 5px;
@@ -110,12 +133,21 @@ img {
     border-radius: 50%;
     background-color: cornflowerblue;
     border: 1px solid black;
+    transition: all 300ms;
 }
 .circle.selected {
-    background-color: rgb(4, 199, 199);
+    background-color: rgb(211, 255, 255);
+    box-shadow: 1px 1px 18px 0px rgba(255, 0, 255, 1);
+    border: 1px solid black;
 }
 #controls {
-    display: block;
-    z-index: 1;
+    z-index: 0;
     margin: auto;
+    position: relative;
+    top: 85vh;
+    width: 10vw;
+    margin-top: 10px;
+}
+button {
+    cursor: pointer;
 }
