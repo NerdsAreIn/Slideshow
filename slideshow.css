@@ -1,22 +1,26 @@
+html {
+  
+}
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     --imageTotalWidth: 290px;
     --imageWidth: 250px;
-    --imageHeight: ;
-    --imageTotalHeight: calc(var(--imageWidth) * 1.5 + 40);    
+    --imageHeight: 375px;
+    --imageTotalHeight: 415px;    
+    --containerWidth: 432px;
 }
 body { 
     width: 100vw;      
     overflow: auto;
     background-color: rgb(245, 234, 245);
+    position: relative;
 }
 #container-div {
-    position: fixed;
+    position: relative;
     top: 5px;
     left: calc((100vw - var(--containerWidth)) / 2 );
-    --containerWidth: 432px;
     width: var(--containerWidth);
     --containerHeight: 465px;
     height: var(--containerHeight);
@@ -37,7 +41,12 @@ body {
     overflow: hidden;      
     top: 0px;
     left: 65px;  
-    box-sizing: content-box;
+    box-sizing: content-box;  
+}
+@media screen and (max-width: 600px) {
+    #container-div {
+        margin-left: 10px;
+    }
 }
 #slides-reel {
     height: 415px;
@@ -71,6 +80,7 @@ body {
 img {
     float: left;
     width: var(--imageWidth);
+    height: var(--imageHeight);
     margin: 20px;    
     z-index: 4;
 }
@@ -125,6 +135,7 @@ img {
     border: 1px solid transparent;
     left: calc((100% - 120px) / 2);
     width: 120px;
+    margin-top: 20px;
 }
 .circle {
     margin: 0 10px;
@@ -141,12 +152,17 @@ img {
     border: 1px solid black;
 }
 #controls {
-    z-index: 0;
-    margin: auto;
-    position: relative;
-    top: 85vh;
-    width: 10vw;
-    margin-top: 10px;
+    z-index: 1;
+    position: fixed;
+    width: 9vw;
+    min-width: 80px;
+    top: 20%;
+    left: calc((100vw - var(--containerWidth)) / 2.5 );
+    bottom: 75vh;
+    border: 1px solid brown;
+    height: 100px;
+    text-align: center;
+    padding: 10px;   
 }
 button {
     cursor: pointer;
