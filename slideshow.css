@@ -1,6 +1,3 @@
-html {
-  
-}
 * {
     margin: 0;
     padding: 0;
@@ -10,6 +7,7 @@ html {
     --imageHeight: 375px;
     --imageTotalHeight: 415px;    
     --containerWidth: 432px;
+    --containerHeight: 465px;
 }
 body { 
     width: 100vw;      
@@ -21,8 +19,7 @@ body {
     position: relative;
     top: 5px;
     left: calc((100vw - var(--containerWidth)) / 2 );
-    width: var(--containerWidth);
-    --containerHeight: 465px;
+    width: var(--containerWidth);    
     height: var(--containerHeight);
     z-index: 1;
     text-align: center;
@@ -32,16 +29,27 @@ body {
 #slides-container {
     border: 7px solid rgba(255, 0, 255, 0.4);
     outline: solid 2px black;
-    outline-offset: 2px;
+    outline-offset: -10px;
     border-radius: 3px;
     height: var(--imageTotalHeight);
     width: var(--imageTotalWidth);
     z-index: 2;    
-    position: absolute;
+    position: relative;
     overflow: hidden;      
     top: 0px;
     left: 65px;  
     box-sizing: content-box;  
+}
+#slides-container::after {
+    width: calc(var(--imageTotalWidth) - 16px);
+    border: 2px solid black;
+    display: block;
+    height: calc(var(--imageTotalHeight) - 16px);
+    content: "";
+    z-index: -1;
+    position: absolute;
+    top: 6px;
+    left: 6px;   
 }
 @media screen and (max-width: 600px) {
     #container-div {
@@ -171,8 +179,8 @@ div#controls-inner {
     text-align: center;  
     left: 0;
     top: 0;    
-    transition: transform 5s;
-    transform-style: preserve-3d;         
+    /*transition: transform 5s;
+    transform-style: preserve-3d;*/         
 }    
 div.controls {    
     position: absolute;
@@ -181,8 +189,16 @@ div.controls {
     -moz-backface-visibility: hidden;
     -webkit-backface-visibility: hidden;     
 }
-/*#controls:active #controls-inner .controls,*/ section#controls-container:active div#controls-inner {      
-    transform: rotateY(180deg);      
+/*#controls:active #controls-inner .controls,*/ section#controls-container:hover div#controls-inner {      
+    /*transform: rotateY(180deg);*/
+    animation: flip 5s linear 1s 1 normal forwards;
+    animation-fill-mode: backwards;
+}
+@keyframes flip {
+    20%, 80% {
+        transform: rotateY(180deg);
+        transform-style: preserve-3d;
+    }
 }
 div.controls.front {
     width: 100%;     
