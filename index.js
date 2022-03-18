@@ -6,11 +6,13 @@ const pauseButton = document.getElementById("pause");
 const playButton = document.getElementById("start");
 const slides = [...document.getElementsByTagName("img")];
 const image1 = slides[0];
+const controlButtons = document.querySelectorAll("#controls-inner button");
 let reelDeclarationBlock = window.getComputedStyle(slidesReel);
 let leftValue = reelDeclarationBlock.getPropertyValue("left");
 let leftNumber = parseInt(leftValue);
 let imageDeclarationBlock = window.getComputedStyle(image1);
 let imageWidth = parseInt(imageDeclarationBlock.getPropertyValue("width")) + 40;
+
 
 for (let i = 0; i < slides.length; i++) {
     slides[i].setAttribute("data-position", -(imageWidth * i) + "px");
@@ -56,6 +58,19 @@ forwardButton.addEventListener("click", () => {
     }
     slidesReel.style.left = leftNumber + "px"; 
     selectCircle();   
+});
+controlButtons.forEach(button => {
+    console.log({button});
+    button.addEventListener("click", (e) => {
+        let clickedButton = e.target;
+        let controlsInner = clickedButton.closest("#controls-inner");
+        controlsInner.classList.toggle("clicked");          
+        if (clickedButton.id == "pause") {
+           console.log("paused");
+           controlsInner.classList.add("paused");
+        }
+        else controlsInner.classList.remove("paused");              
+    }, true);
 });
 
 circles.forEach(circle => {
