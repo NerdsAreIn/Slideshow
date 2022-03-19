@@ -70,7 +70,7 @@ controlButtons.forEach(button => {
            controlsInner.classList.add("paused");
         }
         else controlsInner.classList.remove("paused");              
-    }, true);
+    });
 });
 
 circles.forEach(circle => {

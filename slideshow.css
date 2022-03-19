@@ -9,15 +9,23 @@
     --containerWidth: 432px;
     --containerHeight: 465px;
 }
+@font-face {
+    font-family: "comic";
+    src: url("fonts/ComicShark-lgVE5.otf") format("opentype");
+}
+@font-face {
+    font-family: "banger";
+    src: url("fonts/Bangers-Regular.ttf") format("truetype");
+}
 body { 
     width: 100vw;      
     overflow: auto;
     background-color: rgb(245, 234, 245);
-    position: relative;
+    position: relative;   
 }
 #container-div {
     position: relative;
-    top: 5px;
+    top: 20px;
     left: calc((100vw - var(--containerWidth)) / 2 );
     width: var(--containerWidth);    
     height: var(--containerHeight);
@@ -56,9 +64,9 @@ double border: */
 }
 /* to prevent overlapping of button and container when screen
 size is reduced: */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 850px) {
     #container-div {
-        margin-left: 20px;
+        margin-left: 30px;
     }
 }
 #slides-reel {
@@ -166,14 +174,14 @@ img {
 }
 section#controls-container {
     z-index: 1;
-    position: fixed;
-    width: 9vw;
+    position: absolute;
+    max-width: 9vw;
     min-width: 80px;
-    top: 20%;
-    left: calc((100vw - var(--containerWidth)) / 2.5 );
+    width: clamp(80px, 8vw, 9vw);
+    top: 25%;
+    left: calc((100vw - var(--containerWidth)) / 2.4 );
     bottom: 75vh;
-    height: 100px;   
-    padding: 0px;   
+    height: 80px;   
     background-color: transparent;       
     perspective: 500px;    
 }
@@ -191,12 +199,7 @@ div.controls {
     backface-visibility: hidden;
     -moz-backface-visibility: hidden;
     -webkit-backface-visibility: hidden;  
-  
 }
-/*section#controls-container:hover div#controls-inner {
-    animation: flip-button 5s linear 1s 1 normal forwards;
-    animation-fill-mode: backwards;
-}*/
 div#controls-inner.clicked {   
     animation: flip-button 2500ms linear 100ms 1 normal;
     animation-fill-mode: forwards;
@@ -229,15 +232,24 @@ div.controls.back {
 div.controls button {
     width: 100%;
     height: 100%;
-    border-radius: 20px;
+    border-radius: 35px;
     border: none;
     outline: none;   
+    font-variant: small-caps; 
+    font-size: 18px;  
+    font-family: "banger";  
+    letter-spacing: 1px;    
+    border: 2px solid black;
 }
-div#controls-inner p {
-    transform: translateZ(0px);
+div.controls button:hover {
+    outline: 4px solid rgba(255, 0, 255, 0.3);
+    animation: outline-pulse 600ms linear 100ms 3 forwards;  
 }
-div#controls-inner.clicked  p {
-    transform: translateZ(100px); 
+@keyframes outline-pulse {
+    100% {
+        outline: 4px solid transparent;
+        outline-offset: 5px;
+    }
 }
 #start {
     background-color: cornflowerblue;
