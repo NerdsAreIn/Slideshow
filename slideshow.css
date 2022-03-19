@@ -104,6 +104,7 @@ img {
     height: var(--imageHeight);
     margin: 20px;    
     z-index: 4;
+    object-fit: cover;
 }
 .arrow {
     all: unset;
