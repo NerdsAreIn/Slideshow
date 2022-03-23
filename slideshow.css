@@ -3,7 +3,8 @@
     padding: 0;
     box-sizing: border-box;
     /* each circle is 15px in width, plus a 10px margin on each side = 35px per circle */
-    --circles: 5;
+    --circles: 7;
+    --images: 7;
     --circlesContainerWidth: calc(35 * var(--circles) + 20px);
     --circlesContainerHeight: 50px;
     --imageTotalWidth: 640px;
@@ -11,7 +12,8 @@
     --imageHeight: 400px;
     --imageTotalHeight: 480px;    
     --containerWidth: calc(var(--imageTotalWidth) + 146px);
-    --containerHeight: calc(var(--imageTotalHeight) + var(--circlesContainerHeight));   
+    --containerHeight: calc(var(--imageTotalHeight) + var(--circlesContainerHeight));
+    --percentage: calc(100% / var(--images));   
 }
 @font-face {
     font-family: "comic";
@@ -74,15 +76,18 @@ size is reduced: */
     }
 }
 #slides-reel {
-    height: 415px;
-    width: calc(var(--imageTotalWidth) * 5);
+    height: var(--imageTotalHeight);
+    width: calc(var(--imageTotalWidth) * var(--images));
     z-index: 3;
     position: absolute;
     left: -0px;    
+    border: none;
+    margin-top: 60px;
+    box-sizing: content-box;
 }
 #slides-reel.animated {
     animation-name: move-slides;
-    animation-duration: 9s;
+    animation-duration: 21s;
     animation-iteration-count: infinite;
     animation-timing-function: steps(2, jump-none);
     animation-direction: normal;    
@@ -95,24 +100,31 @@ size is reduced: */
     0% {
         left: 0px;
     }    
-    25% {
+    17% {
         left: calc(var(--imageTotalWidth) * -1);
     }    
-    50% {
+    34% {
         left: calc(var(--imageTotalWidth) * -2);
     }
-    75% {
+    51% {
         left: calc(var(--imageTotalWidth) * -3);
     }
-    100% {
+    67% {
         left: calc(var(--imageTotalWidth) * -4);
     }
+    84% {
+        left: calc(var(--imageTotalWidth) * -5);
+    }
+    100% {
+        left: calc(var(--imageTotalWidth) * -6);
+    }
 }
+
 img {
     float: left;
     width: var(--imageWidth);
-    height: var(--imageHeight);
-    margin: 60px 20px 20px;    
+    height: var(--imageHeight);  
+    margin: 0 20px 20px;     
     z-index: 4;
     object-fit: cover;
     object-position: 0 0;
@@ -170,7 +182,7 @@ a:nth-of-type(2) img {
     text-align: center;
     bottom: 5px;
     border: 1px solid red;
-    left: calc((100% - 195px) / 2);
+    left: calc((100% - 265px) / 2);
     width: var(--circlesContainerWidth);
     margin-top: 35px;
 }
