@@ -12,8 +12,7 @@ let reelDeclarationBlock = window.getComputedStyle(slidesReel);
 let leftValue = reelDeclarationBlock.getPropertyValue("left");
 let leftNumber = parseInt(leftValue);
 let imageDeclarationBlock = window.getComputedStyle(image1);
-let imageWidth = parseInt(imageDeclarationBlock.getPropertyValue("width")) + 40;
-
+let imageWidth = parseInt(imageDeclarationBlock.getPropertyValue("width"));
 
 for (let i = 0; i < slides.length; i++) {
     slides[i].setAttribute("data-position", -(imageWidth * i) + "px");

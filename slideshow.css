@@ -80,11 +80,10 @@ size is reduced: */
     width: calc(var(--imageTotalWidth) * var(--images));
     z-index: 3;
     position: absolute;
-    left: -0px;    
-    border: none;
-    margin-top: 60px;
-    box-sizing: content-box;
-}
+    left: -0px;   
+    border: none;    
+    box-sizing: content-box;    
+ }
 #slides-reel.animated {
     animation-name: move-slides;
     animation-duration: 21s;
@@ -119,16 +118,54 @@ size is reduced: */
         left: calc(var(--imageTotalWidth) * -6);
     }
 }
-
-img {
+.segment {
     float: left;
+    width: var(--imageTotalWidth);
+    height: var(--imageTotalHeight);         
+    z-index: 4;    
+}
+.github-link img {
+    width: 10%;
+    height: 46px;
+    margin-top: 12px;
+    position: relative;
+    right: 40%;
+    background-color: fuchsia;
+    border-radius: 50%;
+    border: 3px solid cornflowerblue;
+    animation: jiggle 3s linear 1s 1;
+}
+@keyframes jiggle {
+    0% {
+        transform: rotate(10deg);
+    }
+    5% {
+        transform: rotate(-10deg);
+    }
+    10% {
+        transform: rotate(10deg);
+    }
+    15% {
+        transform: rotate(-10deg);
+    }
+    20%, 100% {
+        transform: rotate(0deg);
+    }
+}
+.github-link img:hover {
+    background-color: cornflowerblue;
+    transform: scale(1.1);
+}
+img.screenshot {
     width: var(--imageWidth);
-    height: var(--imageHeight);  
-    margin: 0 20px 20px;     
-    z-index: 4;
+    height: var(--imageHeight);     
+    z-index: 5;
     object-fit: cover;
     object-position: 0 0;
     border: 2px solid black;
+    position: relative;  
+    left: 0px;
+    top: 6px;
 }
 a:nth-of-type(2) img {
     object-position: 50% 0;
