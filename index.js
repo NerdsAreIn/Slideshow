@@ -15,7 +15,16 @@ let imageDeclarationBlock = window.getComputedStyle(image1);
 let imageWidth = parseInt(imageDeclarationBlock.getPropertyValue("width"));
 
 for (let i = 0; i < slides.length; i++) {
-    slides[i].setAttribute("data-position", -(imageWidth * i) + "px");
+    slides[i].setAttribute("data-position", -(imageWidth * i) + "px");    
+}
+
+function findVisibleSlide() {
+    for (let i = 0; i < slides.length; i++) {
+        if (slides[i].dataset.position === leftValue) {
+            slides[i].classList.add("visible");
+        }
+        else slides[i].classList.remove("visible");
+    }    
 }
 
 // rewrite this with cirle indices matching imageWidth multipliers:
@@ -33,7 +42,8 @@ function selectCircle() {
 playButton.addEventListener("click", () => {
     slidesReel.classList.add("animated");
     slidesReel.classList.remove("paused");
-    setInterval(selectCircle, 10);    
+    setInterval(selectCircle, 10);
+    setInterval(findVisibleSlide, 10);    
 });
 
 pauseButton.addEventListener("click", () => {
@@ -42,22 +52,28 @@ pauseButton.addEventListener("click", () => {
 });
 
 backButton.addEventListener("click", () => {
+    leftValue = reelDeclarationBlock.getPropertyValue("left");
+    leftNumber = parseInt(leftValue);
     if (leftNumber < -0) {  
         leftNumber += imageWidth;  
     }
     slidesReel.style.left = leftNumber + "px";
     selectCircle();
+    findVisibleSlide();
 });
 
 forwardButton.addEventListener("click", () => {   
     let widthValue = reelDeclarationBlock.getPropertyValue("width");
     let widthNumber = Number("-" + parseInt(widthValue));
-    let finalNumber = widthNumber + imageWidth;
+    leftValue = reelDeclarationBlock.getPropertyValue("left");
+    leftNumber = parseInt(leftValue);
+    let finalNumber = widthNumber + imageWidth;// 2000 + 500
     if (finalNumber < leftNumber) {  
         leftNumber -= imageWidth;        
     }
     slidesReel.style.left = leftNumber + "px"; 
     selectCircle();   
+    findVisibleSlide();
 });
 controlButtons.forEach(button => {
     console.log({button});
@@ -85,9 +101,11 @@ circles.forEach(circle => {
         let position;
         slides.forEach(slide => {
             if (slide.id === circleNo) {
-                position = slide.dataset.position;                          
+                position = slide.dataset.position; 
+                slide.classList.add("visible");                         
             }
+            else slide.classList.remove("visible");
         });
-        slidesReel.style.left = position; 
+        slidesReel.style.left = position;        
     });
 });

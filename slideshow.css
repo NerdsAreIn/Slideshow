@@ -9,7 +9,7 @@
     --circlesContainerHeight: 50px;
     --imageTotalWidth: 640px;
     --imageWidth: 600px;
-    --imageHeight: 400px;
+    --imageHeight: 390px;
     --imageTotalHeight: 480px;    
     --containerWidth: calc(var(--imageTotalWidth) + 146px);
     --containerHeight: calc(var(--imageTotalHeight) + var(--circlesContainerHeight));
@@ -124,32 +124,34 @@ size is reduced: */
     height: var(--imageTotalHeight);         
     z-index: 4;    
 }
+.segment.visible .github-link img {
+    animation: jiggle 3s linear 700ms 1;
+}
 .github-link img {
     width: 10%;
     height: 46px;
-    margin-top: 12px;
+    margin-top: 14px;
     position: relative;
     right: 40%;
     background-color: fuchsia;
     border-radius: 50%;
-    border: 3px solid cornflowerblue;
-    animation: jiggle 3s linear 1s 1;
+    border: 3px solid cornflowerblue;    
 }
 @keyframes jiggle {
     0% {
-        transform: rotate(10deg);
+        transform: rotate(10deg);     
     }
     5% {
-        transform: rotate(-10deg);
+        transform: rotate(-10deg);        
     }
     10% {
-        transform: rotate(10deg);
+        transform: rotate(10deg);        
     }
     15% {
-        transform: rotate(-10deg);
+        transform: rotate(-10deg);        
     }
     20%, 100% {
-        transform: rotate(0deg);
+        transform: rotate(0deg);        
     }
 }
 .github-link img:hover {
@@ -165,9 +167,9 @@ img.screenshot {
     border: 2px solid black;
     position: relative;  
     left: 0px;
-    top: 6px;
+    top: 8px;
 }
-a:nth-of-type(2) img {
+.segment:nth-of-type(2) a:nth-of-type(2) img {
     object-position: 50% 0;
 }
 .arrow {
@@ -218,7 +220,7 @@ a:nth-of-type(2) img {
     position: absolute;   
     text-align: center;
     bottom: 5px;
-    border: 1px solid red;
+    border: 1px solid transparent;
     left: calc((100% - 265px) / 2);
     width: var(--circlesContainerWidth);
     margin-top: 35px;
